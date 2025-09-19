@@ -1,0 +1,77 @@
+#Multi menu program practice
+
+name = input("Enter your name: ")
+print(f"Hello, {name}! Welcome to the multi-menu program.") 
+print("Please choose a category:")
+menu = """
+1. Fruits
+2. Vegetables
+3. Grains
+4. Exit
+"""
+
+
+while True:
+    print(menu)
+    
+    choice = input("Enter your choice (1-4): ")
+    
+    if choice == '1':
+        print("You selected Fruits. Here are some options:")
+        fruits_menu = """
+        a. Apple
+        b. Banana
+        c. Orange
+        d. Back to main menu
+        """
+        print(fruits_menu)
+        fruit_choice = input("Enter your choice (a-d): ")
+        if fruit_choice in ['a', 'b', 'c']:
+            print(f"You selected option {fruit_choice}. Enjoy your fruit!")
+        elif fruit_choice == 'd':
+            continue  #To start over to the main menu
+        else:
+            print("Invalid choice. Returning to main menu.")
+    
+    elif choice == '2':
+        print("You selected Vegetables. Here are some options:")
+        vegetables_menu = """
+        a. Carrot
+        b. Broccoli
+        c. Spinach
+        d. Back to main menu
+        """
+        print(vegetables_menu)
+        veg_choice = input("Enter your choice (a-d): ")
+        if veg_choice in ['a', 'b', 'c']:
+            print(f"You selected option {veg_choice}. Enjoy your vegetable!")
+        elif veg_choice == 'd':
+            continue #To start over to the main menu
+        else:
+            print("Invalid choice. Returning to main menu.")
+    
+    elif choice == '3':
+        print("You selected Grains. Here are some options:")
+        grains_menu = """
+        a. Rice
+        b. Wheat
+        c. Oats
+        d. Back to main menu
+        """
+        print(grains_menu)
+        grain_choice = input("Enter your choice (a-d): ")
+        if grain_choice in ['a', 'b', 'c']:
+            print(f"You selected option {grain_choice}. Enjoy your grain!")
+        elif grain_choice == 'd':
+            continue #To start over to the main menu
+        else:
+            print("Invalid choice. Returning to main menu.")
+    
+    elif choice == '4':
+        print(f"Thank you for using the multi-menu program, {name}! Goodbye!")
+        break
+    
+    else:
+        print("Invalid choice. Please enter a number between 1 and 4.")
+    
+    print(menu)
