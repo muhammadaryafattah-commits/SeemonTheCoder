@@ -31,7 +31,7 @@ while True:
         total_pulpen = jumlah_pulpen * 3500
         total_penghapus = jumlah_penghapus * 2000
         total_semua = total_buku + total_pulpen + total_penghapus
-        grand_total = total_semua + (total_semua // 10)  # Menambahkan pajak 10%    
+        grand_total = total_semua + (total_semua // 10)  #Menambahkan pajak 10%    
         print(f"Total harga semua barang: Rp {total_semua}")
         input("Print struk? (Y/N): ")
         print("\n===================================")
