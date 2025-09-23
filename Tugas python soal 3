@@ -24,27 +24,40 @@ while True:
         total = jumlah * 2000
         print(f"Total harga Penghapus: Rp {total}")
     elif pilihan == "4":
+        #input jumlah semua barang
         jumlah_buku = int(input("Masukkan jumlah Buku Tulis yang ingin dibeli: "))
         jumlah_pulpen = int(input("Masukkan jumlah Pulpen yang ingin dibeli: "))
         jumlah_penghapus = int(input("Masukkan jumlah Penghapus yang ingin dibeli: "))
+
+        #hitung total semua barang
         total_buku = jumlah_buku * 5000
         total_pulpen = jumlah_pulpen * 3500
         total_penghapus = jumlah_penghapus * 2000
         total_semua = total_buku + total_pulpen + total_penghapus
-        grand_total = total_semua + (total_semua // 10)  #Menambahkan pajak 10%    
+        pajak = total_semua // 10
+        grand_total = total_semua + pajak    
         print(f"Total harga semua barang: Rp {total_semua}")
-        input("Print struk? (Y/N): ")
-        print("\n===================================")
-        print("          STRUK BELANJA       ")
-        print("===================================")
-        print(f"Buku Tulis x{jumlah_buku} = Rp {total_buku}")
-        print(f"Pulpen x{jumlah_pulpen} = Rp {total_pulpen}")
-        print(f"Penghapus x{jumlah_penghapus} = Rp {total_penghapus}")
-        print(f"Pajak 10% = Rp {total_semua // 10} ")
-        print("===================================")
-        print(f"Grand Total = Rp {grand_total}")
-        print("===================================\n")
-        break
+        #Print struk
+        input_struk = input("Print struk? (Y/N): ")
+        if input_struk == "Y" or input_struk == "y":
+            print("===================================")
+            print("           STRUK BELANJA       ")
+            print("===================================")
+            print(f"Buku Tulis x{jumlah_buku} = Rp {total_buku}")
+            print(f"Pulpen x{jumlah_pulpen} = Rp {total_pulpen}")
+            print(f"Penghapus x{jumlah_penghapus} = Rp {total_penghapus}")
+            print(f"Pajak 10% = Rp {pajak} ")
+            print("===================================")
+            print(f"Grand Total = Rp {grand_total}")
+            print("===================================")
+            print("Terima kasih telah berbelanja di Toko Peralatan Sekolah kami!")
+            break
+        elif input_struk == "N" or input_struk == "n":
+            print("Terima kasih telah berbelanja di Toko Peralatan Sekolah kami!")
+            break
+        else:
+            print("Input tidak valid. Kembali ke menu utama.")
+            continue
     elif pilihan == "0":
         print("Terima kasih telah berbelanja di Toko Peralatan Sekolah!")
         break
