@@ -1,0 +1,89 @@
+#Sistem parkir mall
+
+#Jenis kendaraan
+jenis_kendaraan = input("Masukkan jenis kendaraan (mobil/motor/bus): ").lower()
+
+if jenis_kendaraan == "mobil":
+    tarif_per_jam = 5000
+elif jenis_kendaraan == "motor":
+    tarif_per_jam = 2000
+elif jenis_kendaraan == "bus":
+    tarif_per_jam = 10000
+else:
+    print("Jenis kendaraan tidak valid.")
+    exit()
+
+#Jenis tiket
+tipe_tiket = input("Masukkan tipe tiket (reguler/vip/member): ").lower()
+if tipe_tiket == "reguler":
+    diskon = 0
+elif tipe_tiket == "vip":
+    diskon = 0.25
+elif tipe_tiket == "member":
+    diskon = 0.15
+else:
+    print("Tipe tiket tidak valid.")
+    exit()
+
+#Aturan lama parkir
+# Tarif dasar (contoh mobil)
+tarif_per_jam = 5000  
+
+# Input lama parkir
+lama_parkir = int(input("Masukkan lama parkir (jam): "))
+
+# Hitung biaya parkir
+if lama_parkir == 1:
+    # Jam pertama selalu tarif normal
+    total_biaya = tarif_per_jam
+
+elif lama_parkir == 2:
+    # Jam 1 tarif normal, Jam 2 tarif ×1.5
+    total_biaya = tarif_per_jam + (tarif_per_jam * 1.5)
+
+elif lama_parkir == 3:
+    # Jam 1 tarif normal, Jam 2 & 3 tarif ×1.5
+    total_biaya = tarif_per_jam + (tarif_per_jam * 1.5 * 2)
+
+else:
+    # Jam 1 tarif normal
+    # Jam 2 & 3 tarif ×1.5
+    # Jam 4 dst tarif ×1.25
+    total_biaya = (
+        tarif_per_jam                             # jam 1
+        + (tarif_per_jam * 1.5 * 2)               # jam 2 & 3
+        + (tarif_per_jam * 1.25 * (lama_parkir - 3))  # jam 4 dst
+    )
+
+#Input hari parkir
+hari_parkir = input("Masukkan hari parkir (weekday/weekend): ").lower()
+if hari_parkir == "weekend":
+    total_biaya = total_biaya * 1.30  
+elif hari_parkir == "weekday":
+    total_biaya = total_biaya
+else:
+    print("Hari parkir tidak valid.")
+    exit()
+
+#Input waktu masuk parkir
+waktu_masuk = (input("Masukkan waktu masuk parkir (pagi/siang/malam): ").lower())
+if waktu_masuk == "pagi":
+    total_biaya = total_biaya 
+elif waktu_masuk == "siang":
+    total_biaya = total_biaya * 1.50
+elif waktu_masuk == "malam":
+    total_biaya = total_biaya - (total_biaya * 0.20)
+
+# Hitung diskon
+total_biaya = total_biaya - (total_biaya * diskon)
+
+# Print struk
+print("===================================")
+print("           STRUK PARKIR       ")
+print("===================================")
+print(f"Jenis Kendaraan: {jenis_kendaraan.capitalize()}")
+print(f"Lama parkir: {lama_parkir} jam")
+print(f"Total biaya: Rp {total_biaya:,.0f}")
+print("===================================")
+print("Terima kasih telah menggunakan layanan parkir kami!")
+print("===================================")
