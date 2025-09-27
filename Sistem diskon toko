@@ -1,0 +1,80 @@
+#Sistem diskon toko
+#Diskon diberikan berdasarkan total belanja
+
+#Membership, Regular, Silver, Gold, Platinum
+#Punya kartu kredit bank tertentu (ya/tidak)
+
+#Diskon dasar berdasarkan total belanja
+#>= Rp 500.000 : 10%
+#>= Rp 300.000 : 7%
+#>= Rp 100.000 : 5%
+#< Rp 100.000 : 0%
+
+#Jika member, dapat tambahan diskon 
+#Regular 0%, Silver 2%, Gold 3%, Platinum 5%
+
+#Diskon hari khusus
+#Senin/Selasa: +2% (hari sepi)
+#Sabtu/Minggu: -1% (hari ramai, kurangi diskon)
+#Hari lain: 0%
+
+#Bonus kartu kredit: +2%
+#Maksimal diskon 20%
+
+#Input belanja, membership, hari, kartu kredit
+total_belanja = int(input("Masukkan total belanja (dalam Rupiah)): "))
+membership = input("Masukkan jenis membership (Regular/Silver/Gold/Platinum/None): ")
+hari = input("Masukkan hari belanja (Senin/Selasa/Rabu/Kamis/Jumat/Sabtu/Minggu): ")
+kartu_kredit = input("Apakah Anda memiliki kartu kredit bank tertentu? (ya/tidak): ")
+
+#Hitung diskon dasar
+if total_belanja >= 500000:
+    diskon_dasar = 0.10
+elif total_belanja >= 300000:
+    diskon_dasar = 0.07
+elif total_belanja >= 100000:
+    diskon_dasar = 0.05
+else:
+    diskon_dasar = 0.0
+
+#Hitung diskon membership
+if membership.lower() == "regular":
+    diskon_membership = 0.0 
+elif membership.lower() == "silver":
+    diskon_membership = 0.02
+elif membership.lower() == "gold":
+    diskon_membership = 0.03
+elif membership.lower() == "platinum":
+    diskon_membership = 0.05
+else:
+    diskon_membership = 0.0
+
+#Hitung diskon hari
+if hari.lower() in ["senin", "selasa"]:
+    diskon_hari = 0.02
+elif hari.lower() in ["sabtu", "minggu"]:
+    diskon_hari = -0.01
+else:
+    diskon_hari = 0.0
+
+#Hitung diskon kartu kredit
+if kartu_kredit.lower() == "ya":
+    diskon_kartu = 0.02
+else:
+    diskon_kartu = 0.0
+
+#Total diskon
+total_diskon = diskon_dasar + diskon_membership + diskon_hari + diskon_kartu
+
+#kalo tidak terpenuhi if statement dibawah ini kodenya bakal dilewati dan lanjut ke tampilan hasil
+if total_diskon > 0.20: 
+    total_diskon = 0.20
+diskon_rupiah = total_belanja * total_diskon
+total_bayar = total_belanja - diskon_rupiah
+
+#Tampilkan hasil
+print("===============================")
+print(f"Total belanja: Rp {total_belanja:,.2f}")
+print(f"Total diskon: {total_diskon*100:.2f}% (Rp {diskon_rupiah:,.2f})")
+print(f"Total yang harus dibayar: Rp {total_bayar:,.2f}")
+print("===============================")
