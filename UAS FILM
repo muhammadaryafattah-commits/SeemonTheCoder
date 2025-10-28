@@ -1,0 +1,76 @@
+#Tampilan menu
+menu = """=============BIOSKOP===============
+1. Lihat Film yang sedang tayang
+2. Check tiket
+3. Beli tiket
+4. Keluar dari program
+==================================="""
+
+#list film 
+film = [
+    {"Judul": "Venom", "Harga": 53000, "Jam": ("10:00", "13:00", "15:00")},
+    {"Judul": "Look Back", "Harga": 52000, "Jam": ("13:00", "16:00", "19:00")},
+    {"Judul": "Transformers ONE", "Harga": 55000, "Jam": ("15:00", "17:00", "21:00")}
+]
+
+kursi = {f["Judul"]: [f"A{i}" for i in range(1, 4)] for f in film}
+tiket = []
+
+#Buat def disini
+def tampilan_film():
+    print("\nDaftar Film yang Sedang Tayang:")
+    for i in range(len(film)):
+        judul = film[i]["Judul"]
+        harga = film[i]["Harga"]
+        jam_tayang = ", ".join(film[i]["Jam"])
+        print(f"{i + 1}. {judul} - Harga: Rp{harga} - Jam Tayang: {jam_tayang}")
+
+def tampilin_tiket():
+    if tiket:
+        for i in tiket:
+            print(i, end=("\n"))
+        print()
+    else:
+        print("Kamu belum memiliki tiket")
+
+
+def beli_tiket():
+    tampilan_film()
+    pilih = int(input("\nPilih nomor film: "))
+
+    if pilih >= 1 and pilih <= len(film):
+        judul = film[pilih - 1]["Judul"]
+        harga = film[pilih - 1]["Harga"]
+        jam = input("Pilih jam tayang: ")
+        kursi = input("Pilih kursi (misal A1): ")
+
+        tiket_baru = f"{judul} | Jam: {jam} | Kursi: {kursi} | Harga: Rp{harga}"
+        tiket.append(tiket_baru)
+        print("\nTiket berhasil dibeli!")
+    else:
+        print("Nomor film tidak valid.")
+
+
+#input
+while True:
+  print(f"\n{menu}")
+  input_choice = int(input(f"\nMenu apa yang ingin anda kunjungi?: "))
+  if input_choice == 1:
+      #Tampilin film apa aja yang tayang
+      tampilan_film()
+
+  elif input_choice == 2:
+      #buat check tiket yg kita punya (mungkin)
+      tampilin_tiket()
+      
+  elif input_choice == 3:
+      #keluar dari program
+      beli_tiket()
+  
+  elif input_choice == 4:
+      #keluar dari program
+      print("Terimakasih telah menggunakan sistem kami!")
+      break
+
+  else:
+      print("Choose the number between 1-4")
