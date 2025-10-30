@@ -1,0 +1,11 @@
+#Soal 2
+print("Anda punya 100 permen dan ingin membaginya ke 7 anak secara merata. Berapa permen yang didapat setiap anak? Berapa permen yang tersisa?")
+
+permen = int(input("Ada berapa jumlah permenmu?: "))
+anak_anak = int(input("Berapa anak yang ingin kamu bagi permen-permennya?: "))
+
+pembagian = permen // (anak_anak)
+sisa_permen = permen % (anak_anak)
+
+print(f"Setiap anak mendapat {pembagian} permen")
+print(f"Sisa permen yang tidak terbagi adalah {sisa_permen} permen")
