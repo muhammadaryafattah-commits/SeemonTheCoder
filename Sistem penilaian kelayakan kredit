@@ -1,0 +1,139 @@
+gaji_bulanan = int(input("Masukkan gaji bulanan (Rp): "))
+umur = int(input("Masukkan umur (tahun): "))
+status_pekerjaan = input("Masukkan status pekerjaan (tetap/kontrak/freelance/tidak_bekerja): ").lower()
+lama_kerja = int(input("Masukkan lama bekerja (bulan): "))
+tanggungan = int(input("Masukkan jumlah tanggungan: "))
+punya_rumah = input("Apakah punya rumah? (ya/tidak): ")
+riwayat = input("Masukkan riwayat kredit (baik/cukup/buruk/belum_ada): ").lower()
+kredit_diminta = int(input("Masukkan jumlah kredit yang diminta (Rp): "))
+
+#sistem penilaian (Skor 0-100)
+skor_gaji = 0 #max 25 poin
+skor_umur = 0 #max 20 poin
+skor_pekerjaan = 0 #max 20 poin
+skor_tanggungan = 0 #max 15 poin
+skor_aset = 0 #max 20 poin
+
+#Skor Gaji
+if gaji_bulanan >= 15000000:
+    skor_gaji = 25
+elif gaji_bulanan >= 10000000:
+    skor_gaji = 20
+elif gaji_bulanan >= 7000000:
+    skor_gaji = 15
+elif gaji_bulanan >= 5000000:
+    skor_gaji = 10
+elif gaji_bulanan < 5000000:
+    skor_gaji = 5
+else:
+    skor_gaji = 0
+
+#Skor umur
+if umur >= 25 and umur <= 45:
+    skor_umur = 20
+elif (umur >= 21 and umur <= 24) or (umur >= 46 and umur <= 55):
+    skor_umur = 15
+elif (umur >= 18 and umur <= 20) or (umur >= 56 and umur <= 60):
+    skor_umur = 10
+else:
+    skor_umur = 5
+
+#Skor pekerjaan & lama kerja
+if status_pekerjaan == "tetap":
+    if lama_kerja >= 24:
+        skor_pekerjaan = 20
+    elif lama_kerja >= 12 and lama_kerja < 23:
+        skor_pekerjaan = 15
+    elif lama_kerja < 12:
+        skor_pekerjaan = 10 
+elif status_pekerjaan == "kontrak":
+    if lama_kerja >= 12:
+        skor_pekerjaan = 12
+    elif lama_kerja < 12:
+        skor_pekerjaan = 8
+elif status_pekerjaan == "freelance":
+    if lama_kerja >= 24:
+        skor_pekerjaan = 10
+    elif lama_kerja < 24:
+        skor_pekerjaan = 5
+elif status_pekerjaan == "tidak_bekerja":
+    skor_pekerjaan = 0
+else:
+    skor_pekerjaan = 0
+
+#Skor tanggungan
+if tanggungan == 0:
+    skor_tanggungan = 15
+elif tanggungan <= 2:
+    skor_tanggungan = 12
+elif tanggungan <= 4:
+    skor_tanggungan = 8
+elif tanggungan == 5:
+    skor_tanggungan = 5
+else:
+    skor_tanggungan = 0
+
+#Skor aset & riwayat
+if punya_rumah == "ya":
+    if riwayat == "baik":
+        skor_aset = 20
+    elif riwayat == "cukup":
+        skor_aset = 15
+    elif riwayat == "buruk":
+        skor_aset = 10
+elif punya_rumah == "tidak":
+    if riwayat == "baik":
+        skor_aset = 12
+    elif riwayat == "cukup":
+        skor_aset = 8
+    elif riwayat == "buruk":
+        skor_aset = 3
+    elif riwayat == "belum_ada":
+        skor_aset = 5
+    else:
+        skor_aset = 0
+else:
+    skor_aset = 0
+
+#Hitung total skor
+total_skor = skor_gaji + skor_umur + skor_pekerjaan + skor_tanggungan + skor_aset
+
+#Penilaian rasio kredit
+rasio_penalti = 0
+if kredit_diminta > 10 * gaji_bulanan:
+    rasio_penalti = -20
+elif kredit_diminta > 5 * gaji_bulanan:
+    rasio_penalti = -10
+
+#Total skor akhir
+total_skor = total_skor + rasio_penalti
+
+#Keputusan akhir
+if total_skor >= 80:
+    hasil = "DISETUJUI - Bunga rendah"
+elif total_skor >= 60 and total_skor <= 79:
+    hasil = "DISETUJUI - Bunga standar"
+elif total_skor >= 40 and total_skor <= 59:
+    hasil = "DISETUJUI - Bunga tinggi, syarat tambahan"
+elif total_skor >= 20 and total_skor <= 39:
+    hasil = "DITOLAK - Bisa apply ulang 6 bulan lagi"
+elif total_skor < 20:
+    hasil = "DITOLAK - Bisa apply ulang 12 bulan lagi"
+else:
+    hasil = "Error dalam penilaian. Silakan coba lagi."
+
+#print struk
+print("===================================")
+print("         STRUK PENILAIAN KREDIT    ")
+print("===================================")
+print(f"Gaji bulanan: Rp {gaji_bulanan:,.0f} - Skor: {skor_gaji}")
+print(f"Umur: {umur} tahun - Skor: {skor_umur}")
+print(f"Status pekerjaan: {status_pekerjaan}, Lama kerja: {lama_kerja} bulan - Skor: {skor_pekerjaan}")
+print(f"Jumlah tanggungan: {tanggungan} - Skor: {skor_tanggungan}")
+print(f"Punya rumah: {punya_rumah}, Riwayat kredit: {riwayat} - Skor: {skor_aset}")
+print(f"Rasio penalti: {rasio_penalti}")    
+print(f"Total skor akhir: {total_skor}")
+print(f"Hasil keputusan: {hasil}")
+print("===================================")
+print("Terima kasih telah menggunakan layanan penilaian kredit kami!")
+print("===================================")

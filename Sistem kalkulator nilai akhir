@@ -1,0 +1,44 @@
+#Program kalkulator nilai akhir mahasiswa
+#Menghitung nilai akhir berdasarkan bobot nilai tugas, UTS, UAS dan Kehadiran
+#Bobot nilai: Tugas 30%, UTS 30%, UAS 40%
+
+#input nama
+nama = input("Masukkan nama mahasiswa: ")
+
+#input nilai tugas, UTS, UAS
+nilai_tugas = int(input("Masukkan nilai tugas: "))
+nilai_uts = int(input("Masukkan nilai UTS: "))
+nilai_uas = int(input("Masukkan nilai UAS: "))
+kehadiran = int(input("Masukkan persentase kehadiran (0-100): "))   
+
+#hitung nilai akhir
+nilai_akhir = (0.3 * nilai_tugas) + (0.3 * nilai_uts) + (0.4 * nilai_uas)
+
+#tampilkan hasil
+print(f"Nilai akhir mahasiswa {nama} adalah: {nilai_akhir}")
+
+#tentukan predikat nilai
+if nilai_akhir >= 85 and nilai_akhir <= 100:
+    predikat = "A"
+elif nilai_akhir >= 70:
+    predikat = "B"
+elif nilai_akhir >= 55:
+    predikat = "C"
+elif nilai_akhir >= 40:
+    predikat = "D"
+elif nilai_akhir >= 0:
+    predikat = "E"
+else:
+    predikat = "Nilai tidak valid"
+
+#Status lulus/tidak lulus
+#Syarat lulus: nilai akhir minimal >= 60 dan kehadiran >= 75%
+if nilai_akhir >= 60 and kehadiran >= 75:
+    status = "DINYATAKAN Lulus"
+else:
+    status = "DINYATAKAN Tidak lulus, karena tidak memenuhi syarat nilai akhir dan kehadiran."
+
+print("===============================")
+print(f"Predikat nilai mahasiswa {nama} adalah: {predikat}")
+print(f"Status: {status}")    
+print("===============================")

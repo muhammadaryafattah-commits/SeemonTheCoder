@@ -1,0 +1,38 @@
+# Program menghitung luas persegi panjang, keliling lingkaran, dan volume kubus
+
+PI = 3.14159  # konstanta π
+
+def luas_persegi_panjang(panjang, lebar):
+    return panjang * lebar
+
+def keliling_lingkaran(radius):
+    return 2 * PI * radius
+
+def volume_kubus(sisi):
+    return sisi ** 3
+
+menu = """
+=== Kalkulator Bangun Ruang ===
+1. Hitung luas persegi panjang
+2. Hitung keliling lingkaran 
+3. Hitung volume kubus
+0. Keluar"""
+
+while True:
+    print(menu)
+    pilihan = input("Pilih menu (0-3): ")
+    if pilihan == "1":
+        panjang = float(input("Masukkan panjang: "))
+        lebar = float(input("Masukkan lebar: "))
+        print(f"Luas persegi panjang: {luas_persegi_panjang(panjang, lebar)}")
+    elif pilihan == "2":
+        radius = float(input("Masukkan radius lingkaran: "))
+        print(f"Keliling lingkaran: {keliling_lingkaran(radius)}")
+    elif pilihan == "3":
+        sisi = float(input("Masukkan panjang sisi kubus: "))
+        print(f"Volume kubus: {volume_kubus(sisi)}")
+    elif pilihan == "0":
+        print("Terima kasih telah menggunakan program ini!")
+        break
+    else:
+        print("Pilihan tidak valid. Silakan coba lagi.")
